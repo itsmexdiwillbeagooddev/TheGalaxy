@@ -493,4 +493,4 @@ if (message.content.startsWith(PREFIX + 'setavatar')) {
 }
 });
 
-client3.login(process.env.BOT_TOKEN2);
+client.login(process.env.BOT_TOKEN2);
