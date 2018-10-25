@@ -14,6 +14,7 @@
     "discord.js-musicbot-addon": "^12.0.6",
     "ffmpeg-binaries": "^4.0.0",
     "get-youtube-id": "^1.0.0",
+    "youtube-info": "^1.0.0",
     "figlet": "^1.2.0",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
