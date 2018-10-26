@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const PREFIX = "-"
+const PREFIX = "u!"
 const Util = require('discord.js');
  
 const getYoutubeID = require('get-youtube-id');
@@ -329,7 +329,7 @@ client.on('message', async msg => { // eslint disable line
             timestamp: new Date(),
             footer: {
               icon_url: client.user.avatarURL,
-              text: "© Misaka"
+              text: "UnderWorld"
             }
           }
         });
