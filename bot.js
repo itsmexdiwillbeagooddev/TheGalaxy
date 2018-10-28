@@ -74,6 +74,12 @@ client.on('message', async msg => { // eslint disable line
             ]
           }
         });
+
+client.on('ready', () => {
+     client.user.setActivity("#UnderWolrd | ?Help ✨",{type: 'Streaming'});
+
+});
+
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has('CONNECT')) {
             return msg.channel.send({embed: {
