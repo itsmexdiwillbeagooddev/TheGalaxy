@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const PREFIX = "u!"
+const PREFIX = "+"
 const Util = require('discord.js');
  
 const getYoutubeID = require('get-youtube-id');
@@ -493,4 +493,4 @@ if (message.content.startsWith(PREFIX + 'setavatar')) {
 }
 });
 
-client.login(process.env.BOT_TOKEN2);
+client.login(process.env.BOT_TOKEN);
