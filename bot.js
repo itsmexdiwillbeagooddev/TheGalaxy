@@ -1208,7 +1208,6 @@ if(!message.channel.guild) return message.reply(':no_entry: | This Command For S
    });
 
 
-var prefix = "$";
 
 client.on('message', message => {
   if (message.author.bot) return;
