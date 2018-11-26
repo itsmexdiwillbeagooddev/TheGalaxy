@@ -36,7 +36,7 @@ client.on('guildMemberAdd', (member) => {
 member.addRole(member.guild.roles.find('name', 'Not Verify'));
 });
 
-bot.on("message", message => {
+client.on("message", message => {
   if(message.content.startsWith("/verify")) {
     let num = Math.floor((Math.random() * 4783) + 10);
  
