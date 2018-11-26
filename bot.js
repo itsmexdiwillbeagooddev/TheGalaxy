@@ -225,7 +225,6 @@ var IzRo = new Discord.RichEmbed()
 .addField('Members Count',`${message.guild.memberCount}`)
 message.channel.send(IzRo);
 });
-}
 
 client.on("message", (message) => {
    if (message.content.startsWith(prefix + "new")) {     /// ALPHA CODES
