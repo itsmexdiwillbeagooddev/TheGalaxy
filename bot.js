@@ -185,7 +185,7 @@ let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.
 let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
 let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
 reaction1.on("collect", r => {
-  message.guild.owner.send(Rembed)
+  message.guild.owner.send(embed)
   message.reply("**# - Done! 🎇**");
 })
 reaction2.on("collect", r => {
