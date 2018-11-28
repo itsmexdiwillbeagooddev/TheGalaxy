@@ -81,7 +81,7 @@ client.on("message", message => {
                                                       .setAuthor(message.author.username, message.author.avatarURL)
                                                       .setDescription('**__:mailbox_with_mail: Suggestion Sent Successfully !__**')
                                                       .setThumbnail(message.author.avatarURL)
-                                                                                                      .setColor("FF0000")
+                                                      .setColor("FF0000")
       
                                                       .setFooter(message.author.username, message.author.avatarURL)
                                                       message.channel.sendEmbed({ embed: embed });
@@ -92,13 +92,13 @@ client.on("message", message => {
 
 
 
-const seender = 'لعمل منشن لمرسل الرساله قم بكتابة {sender} في الرسالة.';
-const server = 'لكتابة اسم السيرفر قم بكتابة {server} في الرسالة.';
-const user = 'لعمل منشن للشخص قم بكتابة {user} في الرسالة.';
+const seender = 'Brodcast + Sender -> {sender}.';
+const server = 'Brodcast + server -> {server}.';
+const user = 'Brodcast + montions user -> {user}.';
 client.on('message', message => {
     if(!message.channel.guild) return;
      var success = new Discord.RichEmbed()
-     .setDescription(`تم أرسال رسالتك بنجاح.`)
+     .setDescription(`**Done**.`)
      .setColor('BLUE')
  if(message.content.startsWith(prefix + 'bc')) {
  if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
