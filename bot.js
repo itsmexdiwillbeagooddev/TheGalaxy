@@ -94,20 +94,20 @@ client.on("message", message => {
 
 const seender = 'Brodcast + Sender -> {sender}.';
 const server = 'Brodcast + server -> {server}.';
-const user = 'Brodcast + montions user -> {user}.';
+const user = 'Brodcast + @user -> {user}.';
 client.on('message', message => {
     if(!message.channel.guild) return;
      var success = new Discord.RichEmbed()
      .setDescription(`**Done**.`)
-     .setColor('BLUE')
+     .setColor('#9F81F7')
  if(message.content.startsWith(prefix + 'bc')) {
- if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
- if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+ if(!message.channel.guild) return message.channel.send('**This Command Just For Servers**').then(m => m.delete(5000));
+ if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**Youd Dont Have Prem** `ADMINISTRATOR`' );
  let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
  let BcList = new Discord.RichEmbed()
  .setColor('RANDOM')
- .setDescription(`**▶ 📝 لأرسال رسالة امبد قم بالضغط على \n ▶ ✏ لأرسال رسالة عادية قم بالضغط على \n ★ ${user} \n ★ ${server} \n ★ ${seender}**`)
- if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(BcList).then(msg => {
+ .setDescription(`**▶ 📝 To Send Embed Brodcast Press \n ▶ ✏ To Send Normal Brodcast Press \n ★ ${user} \n ★ ${server} \n ★ ${seender}**`)
+ if (!args) return message.reply('**You should write a word or phrase To send The Brodcast**');message.channel.send(BcList).then(msg => {
  msg.react('📝')
  .then(() => msg.react('✏'))
  .then(() =>msg.react('📝'))
@@ -126,7 +126,7 @@ client.on('message', message => {
  let EmbedRep = args.replace('{server}' ,message.guild.name).replace('{user}', m).replace('{sender}', `${message.author}`)
  var bc = new
  Discord.RichEmbed()
- .setColor('RANDOM')
+ .setColor('#9F81F7')
  .setDescription(EmbedRep)
  
  m.send({ embed: bc })
@@ -145,18 +145,26 @@ client.on('message', message => {
  }
  });
 
+
+
+///autorole
 client.on('guildMemberAdd', (member) => {
-  member.addRole(member.guild.roles.find('name', '...'));
+  member.addRole(member.guild.roles.find('name', '⇌ Member Not Verify'));
   });	
 
+
+
+//report
 client.on('message', function(message) {
   if(message.content.startsWith(prefix + "report")) {
       let messageArgs = message.content.split(" ").slice(1).join(" ");
       let messageReason = message.content.split(" ").slice(2).join(" ");
       if(!messageReason) return message.reply("**# Specify a reason!**");
+  let modlog = client.channels.find('name', '☸「Reports」');
   let mUser = message.mentions.users.first();
   if(!mUser) return message.channel.send("Couldn't find user.");
-  let Rembed = new Discord.RichEmbed()
+  if (!modlog) return message.reply('**Report Room is Not available**');
+    const embed = new Discord.RichEmbed()
   .setTitle("`New Report!`")
   .setThumbnail(message.author.avatarURL)
   .addField("**# - Reported User:**",mUser,true)
@@ -164,9 +172,9 @@ client.on('message', function(message) {
   .addField("**# - Reason:**",messageReason,true)
   .addField("**# - Channel:**",message.channel,true)
   .addField("**# - Time:**",message.createdAt,true)
-  .setFooter("If the report is a joke, the owner of the report will be ban to the server")
+  .setFooter("**If the report is a joke, the owner of the report will be ban to the server**")
 message.channel.send(Rembed)
-message.channel.send("__Are you sure you want to send this to the Server owner??__").then(msg => {
+message.channel.send("**Are you sure you want to send this to the Server owner !**").then(msg => {
   msg.react("✅")
   msg.react("❌")
 .then(() => msg.react('❌'))
@@ -192,8 +200,8 @@ reaction2.on("collect", r => {
   if (message.content.startsWith('/report')) {
         let user = message.mentions.users.first();
         let reason = args.slice(1).join(' ');
-        let modlog = client.channels.find('name', 'reports');
-        if (!reason) return message.reply('**Put a convincing reason**');
+        let modlog = client.channels.find('name', '☸「Reports」');
+        if (!reason) return message.reply(':hearts:');
           if (message.mentions.users.size < 1) return message.reply('**You must Montion the member to be reported**').catch(console.error);
    
     if (!modlog) return message.reply('**Report Room is Not available**');
