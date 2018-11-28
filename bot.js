@@ -32,9 +32,6 @@ client.on('ready', () => {
 
 
 
-client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'Not Verify'));
-});
 
 client.on("message", message => {
   if(message.content.startsWith("/verify")) {
@@ -156,27 +153,25 @@ client.on('guildMemberAdd', (member) => {
 
 //report
 client.on('message', function(message) {
-  if(message.content.startsWith(prefix + "report")) {
-      let messageArgs = message.content.split(" ").slice(1).join(" ");
-      let messageReason = message.content.split(" ").slice(2).join(" ");
-      if(!messageReason) return message.reply("**# Specify a reason!**");
-  let modlog = client.channels.find('name', '☸「reports」');
-  let mUser = message.mentions.users.first();
-  if(!mUser) return message.channel.send("Couldn't find user.");
-  if (!modlog) return message.reply('**Report Room is Not available**');
-    const embed = new Discord.RichEmbed()
-  .setTitle("`New Report!`")
-  .setThumbnail(message.author.avatarURL)
-  .addField("**# - Reported User:**",mUser,true)
-  .addField("**# - Reported User ID:**",mUser.id,true)
-  .addField("**# - Reason:**",messageReason,true)
-  .addField("**# - Channel:**",message.channel,true)
-  .addField("**# - Time:**",message.createdAt,true)
-  .setFooter("**If the report is a joke, the owner of the report will be ban to the server**")
-message.channel.send(embed)
+    if(message.content.startsWith(prefix + "report")) {
+        let messageArgs = message.content.split(" ").slice(1).join(" ");
+        let messageReason = message.content.split(" ").slice(2).join(" ");
+        if(!messageReason) return message.reply("**# Specify a reason!**");
+    let mUser = message.mentions.users.first();
+    if(!mUser) return message.channel.send("Couldn't find user.");
+    let Rembed = new Discord.RichEmbed()
+    .setTitle("`New Report!`")
+    .setThumbnail(message.author.avatarURL)
+    .addField("**# - Reported User:**",mUser,true)
+    .addField("**# - Reported User ID:**",mUser.id,true)
+    .addField("**# - Reason:**",messageReason,true)
+    .addField("**# - Channel:**",message.channel,true)
+    .addField("**# - Time:**",message.createdAt,true)
+    .setFooter("**If the report is a joke, the owner of the report will be ban to the server**")
+message.channel.send(Rembed)
 message.channel.send("**Are you sure you want to send this to the Server owner !**").then(msg => {
-  msg.react("✅")
-  msg.react("❌")
+    msg.react("✅")
+    msg.react("❌")
 .then(() => msg.react('❌'))
 .then(() =>msg.react('✅'))
 let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
@@ -185,11 +180,11 @@ let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.
 let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
 let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
 reaction1.on("collect", r => {
-  message.guild.owner.send(embed)
-  message.reply("**# - Done! 🎇**");
+    message.guild.owner.send(Rembed)
+    message.reply("**# - Done! 🎇**");
 })
 reaction2.on("collect", r => {
-  message.reply("**# - Canceled!**");
+    message.reply("**# - Canceled!**");
 })
 })
 }
@@ -197,10 +192,10 @@ reaction2.on("collect", r => {
 
   client.on("message", message => {
     let args = message.content.split(" ").slice(1);
-  if (message.content.startsWith('-report')) {
+  if (message.content.startsWith('/report')) {
         let user = message.mentions.users.first();
         let reason = args.slice(1).join(' ');
-        let modlog = client.channels.find('name', '☸「Reports」');
+        let modlog = client.channels.find('name', '☸「reports」');
         if (!reason) return message.reply(':hearts:');
           if (message.mentions.users.size < 1) return message.reply('**You must Montion the member to be reported**').catch(console.error);
    
@@ -235,7 +230,7 @@ message.channel.send(IzRo);
 });
 
 
-
+//apply
 client.on('message', async message => {
     var command = message.content.toLowerCase().split(" ")[0];
     var prefix = '/';
@@ -246,7 +241,7 @@ client.on('message', async message => {
     var filter = m => m.author.id === message.author.id;
     var subChannel = message.guild.channels.find(c => c.name === 'support-request');
    
-    if(command == prefix + 'apply') {
+    if(command == prefix + 'aggggply') {
         if(message.author.bot) return;
         if(message.channel.type === 'dm') return;
  
@@ -380,7 +375,7 @@ message.react("❌")
 
 
 var adminprefix = '-'
-const developers = ["415595760990552065,314845344313901057"]
+const developers = ["415595760990552065","314845344313901057"]
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
@@ -418,7 +413,7 @@ client.on('message', message=> {
     if (message.author.bot) return;
     if (message.isMentioned(client.user))
     {
-    message.reply(" **how can I help you !** ");
+    message.reply(" **How can I help you !** ");
     }
 });
 
@@ -440,7 +435,7 @@ client.on('message', message => {
                         let embed = new Discord.RichEmbed()
                         .setAuthor(message.author.username,message.author.avatarURL)
                         .setThumbnail('https://cdn.discordapp.com/avatars/368141321547808768/c42716e13cb850f9ad0930af699472d0.png?size=2048nk')
-                        .setColor('RANDOM')
+                        .setColor('#8258FA')
                         .addField('**Ping:**',msg + " ms")
 message.channel.send({embed:embed});
                         }
@@ -904,13 +899,13 @@ var args = message.content.split(" ").slice(1);
     }
     //end of create role
     let mutetime = args[1];
-    if(!mutetime) return message.reply("**يرجى تحديد وقت الميوت**:x:");
+    if(!mutetime) return message.reply("**Mute Time ??**:x:");
  
     await(tomute.addRole(muterole.id));
-message.reply(`<@${tomute.id}> **تم اعطائه ميوت ومدة الميوت** : ${ms(ms(mutetime))}`);
+message.reply(`<@${tomute.id}> **Done, Mute time is** : ${ms(ms(mutetime))}`);
 setTimeout(function(){
       tomute.removeRole(muterole.id);
-      message.channel.send(`<@${tomute.id}> **انقضى الوقت وتم فك الميوت عن الشخص**:white_check_mark: `);
+      message.channel.send(`<@${tomute.id}> **Unmuted !**:white_check_mark: `);
     }, ms(mutetime));
  
  
@@ -921,14 +916,14 @@ if(command === `unmute`) {
 if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
  
   let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
+  if(!toMute) return message.channel.sendMessage("**@User**:x: ");
  
   let role = message.guild.roles.find (r => r.name === "Muted");
  
-  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
+  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**This User is not muted !**:x:")
  
   await toMute.removeRole(role)
-  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
+  message.channel.sendMessage("**Done User has been Unmuted !**:white_check_mark:");
  
   return;
  
@@ -1034,74 +1029,6 @@ if(null == message.guild || !message.guild) return;
 });
 
 
-client.on('message', async message =>{
-  var prefix = "/";
-const ms = require("ms");
-if (message.author.omar) return;
-if (!message.content.startsWith(prefix)) return;
-if(!message.channel.guild) return message.channel.send('').then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
-var command = message.content.split(" ")[0];
-command = command.slice(prefix.length);
-var args = message.content.split(" ").slice(1);
-    if(command == "mute") {
-    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!tomute) return message.reply("**Mention someone first**:x: ") .then(m => m.delete(5000));
-    if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**Sorry ,But I Dont Have Permissiom** `MANAGE_MESSAGEES`');
-    let muterole = message.guild.roles.find(`name`, "Muted");
-    //start of create role
-    if(!muterole){
-      try{
-        muterole = await message.guild.createRole({
-          name: "Muted",
-          color: "#070000",
-          permissions:[]
-        })
-        message.guild.channels.forEach(async (channel, id) => {
-          await channel.overwritePermissions(muterole, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false,
-            SPEAK : false
-          });
-        });
-      }catch(e){
-        console.log(e.stack);
-      }
-    }
-    //end of create role
-    let mutetime = args[1];
-    if(!mutetime) return message.reply("**يرجى تحديد وقت الميوت**:x:");
- 
-    await(tomute.addRole(muterole.id));
-message.reply(`<@${tomute.id}> **تم اعطائه ميوت ومدة الميوت** : ${ms(ms(mutetime))}`);
-setTimeout(function(){
-      tomute.removeRole(muterole.id);
-      message.channel.send(`<@${tomute.id}> **انقضى الوقت وتم فك الميوت عن الشخص**:white_check_mark: `);
-    }, ms(mutetime));
- 
- 
- 
-  }
-if(command === `unmute`) {
-  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
- 
-  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
- 
-  let role = message.guild.roles.find (r => r.name === "Muted");
- 
-  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
- 
-  await toMute.removeRole(role)
-  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
- 
-  return;
- 
-  }
- 
-});
-
 
 
 client.on('message', message => {
@@ -1144,7 +1071,7 @@ client.on('message', message => {
 
 client.on("message", message => {
   let men = message.mentions.users.first();
-  if(message.content.startsWith(prefix + 'vkick')) {
+  if(message.content.startsWith(prefix + 'voicekick')) {
     try {
     if(!men) {
       message.channel.send("**Mention A Person**");
@@ -1240,19 +1167,6 @@ if (command == "say") {
 });
 
 
-client.on("message", message => {
-if (message.content === ("/ac")) {
-let channel = message.client.channels.find('name', "• Galaxy » Members");
-let muteRole = client.guilds.get(message.guild.id).channels.find('name', '• Galaxy » Members');
-if (!muteRole) return message.reply("** hmm... **").catch(console.error);
-if(!message.channel.guild) return message.reply('**Commands in the server**');
-if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You dont have** `ADMINISTRATOR`' );
-channel.edit({name : `memberCount「${message.guild.memberCount}」`});
-message.channel.sendMessage("Done")
-      
-  }
-});
-
 
   client.on('message',async message => {
     if(message.content.startsWith(prefix + "restart")) {
@@ -1276,10 +1190,10 @@ message.channel.sendMessage("Done")
   
 client.on('message', eyad => {
   if (eyad.content.startsWith('/vb')) {
-if (!eyad.member.hasPermission("MOVE_MEMBERS")) return eyad.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+if (!eyad.member.hasPermission("MOVE_MEMBERS")) return eyad.channel.send("**You dont have prem** :rage: | ❎ ");
 let men = eyad.mentions.users.first()
 let mas = eyad.author
-if(!men) return eyad.channel.send('`منشن شخص `');
+if(!men) return eyad.channel.send('`@user `');
 eyad.guild.channels.forEach(c => {
 c.overwritePermissions(men.id, {
           CONNECT: false
@@ -1289,8 +1203,8 @@ const embed = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setDescription(`**
  <@${men.id}>
-لقد تم منعك من دخول الرومات الصوتيه 
-بواسطة : <@${eyad.author.id}> **`)
+You have been banned To join the rooms 
+by : <@${eyad.author.id}> **`)
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
           
 client.users.get(men.id).sendEmbed(embed)
@@ -1298,8 +1212,8 @@ const Embed11 = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setAuthor(eyad.guild.name, eyad.guild.iconURL)
 .setDescription(`          <@${men.id}>
-لقد تم منعك من دخول الرومات الصوتيه 
-بواسطة : <@${eyad.author.id}> `)
+You have been banned To join the rooms 
+by : <@${eyad.author.id}> `)
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
 eyad.channel.sendEmbed(Embed11).then(eyad => {eyad.delete(10000)})
     }
@@ -1311,10 +1225,10 @@ eyad.channel.sendEmbed(Embed11).then(eyad => {eyad.delete(10000)})
 
 client.on('message', eyad => {
   if (eyad.content.startsWith('/unvb')) {
-if (!eyad.member.hasPermission("MOVE_MEMBERS")) return eyad.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+if (!eyad.member.hasPermission("MOVE_MEMBERS")) return eyad.channel.send("**You dont have prem** :rage: | ❎ ");
  let men = eyad.mentions.users.first()
  let mas = eyad.author
- if(!men) return eyad.channel.send('`منشن شخص `');
+ if(!men) return eyad.channel.send('`@user `');
  eyad.guild.channels.forEach(c => {
  c.overwritePermissions(men.id, {
          CONNECT: true
@@ -1324,8 +1238,8 @@ const embed = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setDescription(`**
  <@${men.id}>
- الان يمكنك الدخول الي الرومات الصوتيه :)
-بواسطة : <@${eyad.author.id}> **`)
+You have been unbanned To join the rooms 
+by : <@${eyad.author.id}> **`)
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
           
 client.users.get(men.id).sendEmbed(embed)
@@ -1333,8 +1247,8 @@ const Embed11 = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setAuthor(eyad.guild.name, eyad.guild.iconURL)
 .setDescription(`          <@${men.id}>
-الان يمكنك الدخول الي الرومات الصوتيه
-بواسطة : <@${eyad.author.id}>
+You have been unbanned To join the rooms 
+by : <@${eyad.author.id}>
 `)
 .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
 eyad.channel.sendEmbed(Embed11).then(eyad => {eyad.delete(15000)})
