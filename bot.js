@@ -173,7 +173,7 @@ client.on('message', function(message) {
   .addField("**# - Channel:**",message.channel,true)
   .addField("**# - Time:**",message.createdAt,true)
   .setFooter("**If the report is a joke, the owner of the report will be ban to the server**")
-message.channel.send(Rembed)
+message.channel.send(embed)
 message.channel.send("**Are you sure you want to send this to the Server owner !**").then(msg => {
   msg.react("✅")
   msg.react("❌")
