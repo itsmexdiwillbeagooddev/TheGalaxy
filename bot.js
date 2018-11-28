@@ -160,7 +160,7 @@ client.on('message', function(message) {
       let messageArgs = message.content.split(" ").slice(1).join(" ");
       let messageReason = message.content.split(" ").slice(2).join(" ");
       if(!messageReason) return message.reply("**# Specify a reason!**");
-  let modlog = client.channels.find('name', '☸「Reports」');
+  let modlog = client.channels.find('name', '☸「reports」');
   let mUser = message.mentions.users.first();
   if(!mUser) return message.channel.send("Couldn't find user.");
   if (!modlog) return message.reply('**Report Room is Not available**');
@@ -197,7 +197,7 @@ reaction2.on("collect", r => {
 
   client.on("message", message => {
     let args = message.content.split(" ").slice(1);
-  if (message.content.startsWith('/report')) {
+  if (message.content.startsWith('-report')) {
         let user = message.mentions.users.first();
         let reason = args.slice(1).join(' ');
         let modlog = client.channels.find('name', '☸「Reports」');
