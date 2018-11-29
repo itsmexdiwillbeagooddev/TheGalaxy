@@ -23,7 +23,7 @@ const client = new Discord.Client();
 const prefix = '/'
 ti={}  
 spee={};
-
+ 
 
 client.on('ready', () => {
      client.user.setActivity("Galaxy Server",{type: 'WATCHING'})
